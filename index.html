@@ -11,17 +11,19 @@
     <div class="container">
         <div class="dictionary">
             <div class="search-div">
-                <input type="text" id="search-text" placeholder="Enter a word">
-                <i class="fa-solid fa-magnifying-glass" style="font-size: 30px; cursor: pointer;"></i>
+                <input type="text" id="search-word" placeholder="Enter a word"> 
+                <i class="fa-solid fa-magnifying-glass" style="font-size: 30px; cursor: pointer;" onclick= "search()"></i>
             </div>
             <div class="searched">
-                <h1 id="searched-word">House</h1>
-                <p id="phonetic">\haus\</p>
-                <p id="meaning">Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem itaque porro et reprehenderit officiis. Eum animi omnis rem corrupti impedit, illum nam error atque recusandae deleniti nostrum consequatur labore est.</p>
-                <h5>Examples:</h5>
-                <p id="example"><span>• </span>We visited the haunted house</p>
+                <h1 id="searched-word">You have not searched for a word</h1>
+                <p id="phonetic"></p>
+                <p id="meaning"></p>
+                <p></p>
+                <h4 id="ex-tx">Examples:</h4>
+                <p id="example"></p>
             </div>
         </div>
     </div>
+    <script src="script.js"></script>
 </body> 
 </html>
