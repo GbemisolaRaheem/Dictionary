@@ -1,29 +1,33 @@
 document.getElementById("ex-tx").style.display = "none";
 let searchWordInput = document.getElementById("search-word");
 
-searchWordInput.addEventListener('keydown', (event) => {
+searchWordInput.addEventListener('keydown', async  (event) => {
     if (event.key === 'Enter') {
         search()
     }
 });
 
-function search() {
+async function search() {
     let searchWord = searchWordInput.value.trim();
     if (searchWord === "") {
-        alert("Enter a word to search");
-    } else {
-        const api = `https://api.dictionaryapi.dev/api/v2/entries/en/${searchWord}`;
-        fetch(api)
-            .then(response => {
+        alert("Enter a word to search")
+        return
+    } 
+    
+    const api = `https://api.dictionaryapi.dev/api/v2/entries/en/${searchWord}`;
+    
+    try {
+
+        const response = await fetch(api)
+
                 if (!response.ok) {
                     document.getElementById("meaning").textContent = "No definition found for the word.";
                     throw new Error("Network response was not ok");
                 }
-                return response.json();
-            })
-            .then(data => {
-                if (data[0] && data[0].meanings[0] && data[0].meanings[0].definitions[0]) {
 
+                const data = await response.json()
+
+                if (data[0] && data[0].meanings[0] && data[0].meanings[0].definitions[0]) {
                     const word = data[0].word
                     document.getElementById("searched-word").textContent = word;
 
@@ -41,7 +45,7 @@ function search() {
                 } else {
                     document.getElementById("meaning").textContent = "No definition found for the word.";
                 }
-            })
-            .catch(error => console.error('Error:', error));
-    }
+           } catch (error){
+                console.error('Error:', error)
+           }
 }
